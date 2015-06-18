@@ -4,13 +4,16 @@ LDFLAGS=
 
 all: main
 
-main: main.c aes.o crc32.o
+main: main.c aes.o crc32.o popcnt.o
 	$(CC) $(CFLAGS) $^ -o main $(LDFLAGS)
 
 aes.o: aes.asm
 	nasm -f elf64 -o $@ $^
 
 crc32.o: crc32.asm
+	nasm -f elf64 -o $@ $^
+
+popcnt.o: popcnt.asm
 	nasm -f elf64 -o $@ $^
 
 clean:

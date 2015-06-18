@@ -1,4 +1,5 @@
 #include "aes.h"
+#include "popcnt.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -17,6 +18,10 @@ void printAESBlock(char* description, unsigned char* data) {
 }
 
 int main(void) {
+    for(unsigned long i = 0; i < 20; ++i) {
+        printf("popcnt(%lu) = %lu", i, population_count_u64(i));
+    }
+
     unsigned char* key = malloc(AES_BLOCK_SIZE_BYTES);
     assert(key);
     syscall(SYS_getrandom, key, AES_BLOCK_SIZE_BYTES, 0);
