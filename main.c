@@ -18,8 +18,9 @@ void printAESBlock(char* description, unsigned char* data) {
 }
 
 int main(void) {
-    for(unsigned long i = 0; i < 20; ++i) {
-        printf("popcnt(%lu) = %lu", i, population_count_u64(i));
+    for(unsigned long i = 0; i < 1024; ++i) {
+        if(population_count_u64(i) <= 1)
+            printf("popcnt(%lu) = %lu\n", i, population_count_u64(i));
     }
 
     unsigned char* key = malloc(AES_BLOCK_SIZE_BYTES);
